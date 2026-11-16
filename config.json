@@ -1,0 +1,32 @@
+{
+  "data": {
+    "main_excel": "data/samples.xlsx",
+    "auxiliary_excel": "data/auxiliary.xlsx",
+    "image_caches": {
+      "main": "data/img_dict.pkl",
+      "u": "data/img_dict_U.pkl",
+      "v": "data/img_dict_V.pkl",
+      "q": "data/img_dict_Q.pkl"
+    },
+    "image_size": [201, 201]
+  },
+  "training": {
+    "epochs": 100,
+    "batch_size": 16,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.00001,
+    "seed": 42,
+    "device": "auto",
+    "num_workers": 0,
+    "cpu_threads": 1
+  },
+  "split_years": {
+    "train": [2003, 2019],
+    "validation": [2020, 2021],
+    "test": [2022, 2023]
+  },
+  "output": {
+    "directory": "outputs",
+    "checkpoint": "best_regression_model.pth"
+  }
+}
