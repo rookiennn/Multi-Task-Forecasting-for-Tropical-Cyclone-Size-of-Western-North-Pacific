@@ -15,7 +15,6 @@ Each forecast contains 12 values: R34, R50, and R64 for four quadrants, ordered 
 | `config.json` | Paths and training settings for your own data. |
 | `examples/` | A small configuration, synthetic data generator, and runnable example. |
 | `model/` | The supplied model checkpoint and MAE results. |
-| `upload_github.ps1` | Commits the project and pushes it to an existing GitHub repository. |
 
 ## 2. Environment and Dependencies
 
@@ -106,36 +105,3 @@ To run the workflow checks:
 ```bash
 python -m unittest discover -s tests -v
 ```
-
-## 7. Upload to GitHub
-
-Install Git and create an empty repository on GitHub. Leave the new repository's README, license, and .gitignore options unchecked so its history is empty. Make sure your Git credentials have permission to push to it.
-
-If Git author details have not been configured, set your own name and email once:
-
-```powershell
-git config --global user.name "Your Name"
-git config --global user.email "your-email@example.com"
-```
-
-In PowerShell, replace `YOUR_USERNAME` with your GitHub username. First preview the steps:
-
-```powershell
-.\upload_github.ps1 -RepositoryUrl "https://github.com/YOUR_USERNAME/TCSF.git" -DryRun
-```
-
-Then upload:
-
-```powershell
-.\upload_github.ps1 -RepositoryUrl "https://github.com/YOUR_USERNAME/TCSF.git"
-```
-
-You can also use an SSH address such as `git@github.com:YOUR_USERNAME/TCSF.git`. For later updates, run the same script with a new commit message:
-
-```powershell
-.\upload_github.ps1 -RepositoryUrl "https://github.com/YOUR_USERNAME/TCSF.git" -CommitMessage "Update project"
-```
-
-The script initializes Git when needed, stages files according to `.gitignore`, commits changes, and pushes the current commit to the `main` branch on the remote. Use `-Branch` to choose a different remote branch. It uses the script's folder as the project root; `-ProjectPath` can select another project directory.
-
-The existing model weights are included. Virtual environments, input data, generated example data, and run outputs are excluded by `.gitignore`. The script keeps an existing origin address, refuses a mismatched origin, and does not force-push. If the remote already has its own commits and Git rejects the push, reconcile the histories before retrying.
